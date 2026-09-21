@@ -1,0 +1,21 @@
+[package]
+name = "scripting-host"
+description = "Bridge between Gouda Scripting (GS) and the Halloy client"
+version.workspace = true
+authors.workspace = true
+license.workspace = true
+edition.workspace = true
+
+# The interface layer. Depends on the language core (`gouda`) and on `data`
+# (for client events, commands, and path resolution). Deliberately does NOT
+# depend on `iced` — UI wiring (the script editor) lives in the top-level
+# `halloy` crate; this crate only produces/consumes plain messages so it can
+# run on its own thread today and move into a sidecar later.
+[dependencies]
+gouda = { version = "0.1.0", path = "../lang" }
+data = { version = "0.1.0", path = "../data" }
+thiserror = { workspace = true }
+log = { workspace = true, features = ['std'] }
+
+[lints]
+workspace = true

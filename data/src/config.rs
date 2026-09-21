@@ -380,6 +380,21 @@ impl Config {
         dir
     }
 
+    /// Jailed directory for Gouda Scripting: holds user `*.gs` scripts and
+    /// their `*.state.toml` files. Named `gouda` (not `scripts`) to keep the
+    /// user's script files distinct from the language crate and any other
+    /// `scripts` notion. All GS file I/O is confined to this directory.
+    pub fn gouda_dir() -> PathBuf {
+        let dir = Self::config_dir().join("gouda");
+
+        if !dir.exists() {
+            create_owned_dir(dir.as_path())
+                .expect("expected permissions to create gouda folder");
+        }
+
+        dir
+    }
+
     pub fn path() -> PathBuf {
         Self::config_dir().join(environment::CONFIG_FILE_NAME)
     }

@@ -1,0 +1,5 @@
+fn Sum:$1..2: { %res = $1 + $2 | return %res }
+alias sum:$1..2: { return $Sum($1, $2) }
+on TEXT:!add*$1..2: {
+
+}

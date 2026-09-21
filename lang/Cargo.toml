@@ -1,0 +1,18 @@
+[package]
+name = "gouda"
+description = "Gouda Scripting (GS) — the Halloy scripting language core"
+version.workspace = true
+authors.workspace = true
+license.workspace = true
+edition.workspace = true
+
+# The language core is intentionally host-agnostic: no `data`, `iced`, or
+# networking dependencies. It is a deterministic evaluator that takes a
+# `ScriptEvent` in and yields `ScriptEffect`s out, so it can be unit-tested in
+# isolation and later moved in-process or into a sidecar without a rewrite.
+[dependencies]
+thiserror = { workspace = true }
+indexmap = "2.6"
+
+[lints]
+workspace = true
